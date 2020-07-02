@@ -1,1 +1,1 @@
-# sveltejs_weather_app
+# svelte weather app
