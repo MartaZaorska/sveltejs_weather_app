@@ -1,9 +1,24 @@
+<script context="module">
+  let userCity;
+  if (localStorage.getItem("weather_app_mz") === null) {
+    userCity = { woeid: 523920, title: "Warsaw" };
+    localStorage.setItem("weather_app_mz", JSON.stringify({ userCity }));
+  } else {
+    userCity = JSON.parse(localStorage.getItem("weather_app_mz")).userCity;
+  }
+</script>
+
 <script>
   import WeatherStore from "./store.js";
   import Search from "./components/Search.svelte";
   import Cities from "./components/Cities.svelte";
   import Weather from "./components/Weather.svelte";
   import Spinner from "./components/Spinner.svelte";
+
+  WeatherStore.update(currentStore => ({
+    ...currentStore,
+    cities: [userCity]
+  }));
 </script>
 
 <style>
@@ -60,6 +75,13 @@
     color: #344558;
   }
 
+  .copyright {
+    width: 100%;
+    padding-bottom: 0.7em;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
   @media screen and (min-width: 768px) {
     :global(body) {
       font-size: 14px;
@@ -84,4 +106,14 @@
   {:else if Object.keys($WeatherStore.weather).length > 0}
     <Weather />
   {/if}
+  <p class="copyright">
+    &copy;
+    <a
+      href="https://martazaorska.github.io/portfolio/"
+      rel="noopener noreferrer"
+      target="_blank">
+      Weather App
+    </a>
+    {new Date().getFullYear()}
+  </p>
 </main>
