@@ -1,4 +1,5 @@
 <script>
+  import { fade } from "svelte/transition";
   import WeatherStore from "../store.js";
   import { getTimeString } from "../helper";
   let userCity = JSON.parse(localStorage.getItem("weather_app_mz")).userCity;
@@ -98,7 +99,7 @@
   }
 </style>
 
-<section class="city_info">
+<section class="city_info" in:fade={{ delay: 100, duration: 300 }}>
   <header>
     <h3>{$WeatherStore.weather.title}, {$WeatherStore.weather.parent.title}</h3>
     <h1>{getTimeString($WeatherStore.weather.time)}</h1>

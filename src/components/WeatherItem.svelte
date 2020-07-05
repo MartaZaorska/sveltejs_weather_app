@@ -1,4 +1,5 @@
 <script>
+  import { scale, fade } from "svelte/transition";
   import {
     getDateString,
     fixedNumber,
@@ -6,7 +7,7 @@
     milesToKm
   } from "../helper.js";
   import { ICONS } from "../constants.js";
-  export let data;
+  export let data, index;
 </script>
 
 <style>
@@ -100,7 +101,7 @@
   }
 </style>
 
-<section class="weather__item">
+<section class="weather__item" in:scale={{ delay: 100 * index, duration: 350 }}>
   <header>
     <h3>{getDateString(data.applicable_date)}</h3>
   </header>

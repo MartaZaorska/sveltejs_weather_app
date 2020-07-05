@@ -77,9 +77,9 @@
 
   .copyright {
     width: 100%;
-    padding-bottom: 0.7em;
     text-align: center;
     color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 0.5em;
   }
 
   @media screen and (min-width: 768px) {

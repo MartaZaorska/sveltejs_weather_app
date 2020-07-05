@@ -35,8 +35,8 @@
 <section class="weather">
   <CityInfo />
   <section class="weather__list">
-    {#each $WeatherStore.weather.consolidated_weather as weather (weather.id)}
-      <WeatherItem data={weather} />
+    {#each $WeatherStore.weather.consolidated_weather as weather, index (weather.id)}
+      <WeatherItem data={weather} {index} />
     {/each}
   </section>
 </section>

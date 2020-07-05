@@ -1,4 +1,5 @@
 <script>
+  import { fade } from "svelte/transition";
   import WeatherStore from "../store";
   import { fetchData } from "../helper.js";
 
@@ -74,8 +75,11 @@
 </style>
 
 <section class="cities">
-  {#each $WeatherStore.cities as city (city.woeid)}
-    <button class="cities__item" on:click={() => handleClick(city.woeid)}>
+  {#each $WeatherStore.cities as city, index (city.woeid)}
+    <button
+      in:fade={{ delay: index * 40, duration: 220 }}
+      class="cities__item"
+      on:click={() => handleClick(city.woeid)}>
       {city.title}
     </button>
   {/each}
